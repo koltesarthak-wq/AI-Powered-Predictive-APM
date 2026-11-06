@@ -1,0 +1,15 @@
+{
+  "deployment_id": "f21031cd0b7c4ddea23e3747eafe09e4",
+  "agent_name": "AI-Predictive-APM-Agent",
+  "operating_system": "Windows",
+  "architecture": "x64",
+  "backend_url": "http://127.0.0.1:8001",
+  "collection_interval": 5,
+  "status": "INSTALLER_READY",
+  "package": "Predictive-APM-Agent-Setup-f21031cd.exe",
+  "package_type": "exe",
+  "size_bytes": 17049441,
+  "sha256": "3228eb735f73687233cd3b18aa107f1e0e3c0cc94848ba9d813a4b32b738ddd1",
+  "created_at": "2026-11-06T17:19:17.643496+00:00",
+  "download_endpoint": "/agent/deployment/download/f21031cd0b7c4ddea23e3747eafe09e4"
+}

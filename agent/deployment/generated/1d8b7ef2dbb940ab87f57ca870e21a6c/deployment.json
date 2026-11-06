@@ -1,0 +1,15 @@
+{
+  "deployment_id": "1d8b7ef2dbb940ab87f57ca870e21a6c",
+  "agent_name": "My-Windows-Host",
+  "operating_system": "Windows",
+  "architecture": "x64",
+  "backend_url": "http://127.0.0.1:8001",
+  "collection_interval": 5,
+  "status": "INSTALLER_READY",
+  "package": "Predictive-APM-Agent-Setup-1d8b7ef2.exe",
+  "package_type": "exe",
+  "size_bytes": 17049324,
+  "sha256": "7818636486f6d602880695c0d33fd35c8faaf80e378408b72ee03410a81bda92",
+  "created_at": "2026-11-06T17:12:38.814524+00:00",
+  "download_endpoint": "/agent/deployment/download/1d8b7ef2dbb940ab87f57ca870e21a6c"
+}

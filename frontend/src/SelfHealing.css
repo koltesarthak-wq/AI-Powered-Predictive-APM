@@ -1,0 +1,1020 @@
+/* =========================================================
+   SELF-HEALING
+========================================================= */
+
+.self-healing-page {
+  padding: 30px 32px 60px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.self-healing-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 25px;
+}
+
+.self-healing-header h2 {
+  margin: 8px 0 5px;
+
+  color: #e2e8f0;
+
+  font-size: 28px;
+}
+
+.self-healing-header p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+}
+
+.healing-refresh-button {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 10px 14px;
+
+  border: 1px solid #334155;
+
+  border-radius: 8px;
+
+  background: #111827;
+
+  color: #cbd5e1;
+
+  cursor: pointer;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+.healing-refresh-button:hover {
+  border-color: #3b82f6;
+
+  color: #60a5fa;
+}
+
+.healing-refresh-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+.healing-refresh-spinning {
+  animation: healing-spin 1s linear infinite;
+}
+
+@keyframes healing-spin {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.healing-error {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 14px 16px;
+
+  margin-bottom: 20px;
+
+  border-radius: 10px;
+
+  border: 1px solid #7f1d1d;
+
+  background: #2a1111;
+
+  color: #fca5a5;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   STATUS CARD
+========================================================= */
+
+.healing-status-card {
+  display: flex;
+  align-items: center;
+
+  gap: 18px;
+
+  padding: 22px;
+
+  margin-bottom: 30px;
+
+  border-radius: 14px;
+
+  border: 1px solid #1e293b;
+
+  background: #0d121c;
+}
+
+.healing-status-icon {
+  width: 54px;
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+}
+
+.healing-status-info {
+  flex: 1;
+}
+
+.healing-status-info > span {
+  color: #64748b;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+}
+
+.healing-status-info h2 {
+  margin: 4px 0;
+
+  font-size: 19px;
+
+  color: #e2e8f0;
+}
+
+.healing-status-info p {
+  margin: 0;
+
+  color: #94a3b8;
+
+  font-size: 11px;
+}
+
+.healing-status-badge {
+  padding: 8px 12px;
+
+  border-radius: 7px;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   STATUS COLORS
+========================================================= */
+
+.healing-success {
+  border-color: #14532d;
+
+  background: #071c12;
+}
+
+.healing-success .healing-status-icon {
+  background: #052e16;
+
+  color: #4ade80;
+}
+
+.healing-success .healing-status-badge {
+  background: #052e16;
+
+  color: #4ade80;
+}
+
+
+.healing-failed {
+  border-color: #7f1d1d;
+
+  background: #1f1010;
+}
+
+.healing-failed .healing-status-icon {
+  background: #3f1111;
+
+  color: #f87171;
+}
+
+.healing-failed .healing-status-badge {
+  background: #3f1111;
+
+  color: #f87171;
+}
+
+
+.healing-warning {
+  border-color: #713f12;
+
+  background: #1c1608;
+}
+
+.healing-warning .healing-status-icon {
+  background: #3b2e05;
+
+  color: #facc15;
+}
+
+.healing-warning .healing-status-badge {
+  background: #3b2e05;
+
+  color: #facc15;
+}
+
+
+.healing-ready .healing-status-icon {
+  background: #172033;
+
+  color: #60a5fa;
+}
+
+.healing-ready .healing-status-badge {
+  background: #172033;
+
+  color: #60a5fa;
+}
+
+
+.healing-loading .healing-status-icon {
+  background: #172033;
+
+  color: #a78bfa;
+}
+
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.healing-section-title {
+  margin-bottom: 14px;
+}
+
+.healing-section-title h3 {
+  margin: 0;
+
+  color: #e2e8f0;
+
+  font-size: 17px;
+}
+
+.healing-section-title p {
+  margin: 5px 0 0;
+
+  color: #64748b;
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   METRICS
+========================================================= */
+
+.healing-metrics-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 15px;
+
+  margin-bottom: 30px;
+}
+
+.healing-metric {
+  padding: 20px;
+
+  border: 1px solid #1e293b;
+
+  border-radius: 12px;
+
+  background: #0d121c;
+}
+
+.healing-metric:hover {
+  border-color: #334155;
+}
+
+.healing-metric.danger {
+  border-color: #7f1d1d;
+}
+
+.healing-metric-header {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  color: #94a3b8;
+
+  font-size: 12px;
+}
+
+.healing-metric-icon {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background: #172033;
+
+  color: #60a5fa;
+}
+
+.healing-metric-value {
+  margin-top: 20px;
+
+  color: #f1f5f9;
+
+  font-size: 30px;
+
+  font-weight: 700;
+}
+
+.healing-metric-value small {
+  margin-left: 4px;
+
+  color: #64748b;
+
+  font-size: 12px;
+}
+
+.healing-metric-status {
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  margin-top: 9px;
+
+  color: #4ade80;
+
+  font-size: 10px;
+
+  font-weight: 600;
+}
+
+.healing-metric-status span {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #22c55e;
+
+  box-shadow:
+    0 0 8px
+    rgba(34, 197, 94, 0.6);
+}
+
+.danger-text {
+  color: #f87171 !important;
+}
+
+.healing-metric-status.danger-text span {
+  background: #ef4444;
+
+  box-shadow:
+    0 0 8px
+    rgba(239, 68, 68, 0.6);
+}
+
+
+/* =========================================================
+   AI ANALYSIS
+========================================================= */
+
+.healing-analysis-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 15px;
+
+  margin-bottom: 30px;
+}
+
+.healing-card {
+  padding: 20px;
+
+  border: 1px solid #1e293b;
+
+  border-radius: 12px;
+
+  background: #0d121c;
+}
+
+.healing-card-header {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  color: #60a5fa;
+}
+
+.healing-card-header > div {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.healing-card-header strong {
+  color: #cbd5e1;
+
+  font-size: 12px;
+}
+
+.healing-card-header span {
+  margin-top: 3px;
+
+  color: #64748b;
+
+  font-size: 10px;
+}
+
+.healing-value {
+  margin-top: 25px;
+
+  font-size: 23px;
+
+  font-weight: 700;
+}
+
+.healing-value.success {
+  color: #4ade80;
+}
+
+.healing-value.warning {
+  color: #facc15;
+}
+
+.healing-value.danger {
+  color: #f87171;
+}
+
+.healing-score {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 18px;
+
+  padding-top: 12px;
+
+  border-top: 1px solid #1e293b;
+
+  color: #64748b;
+
+  font-size: 10px;
+}
+
+.healing-score strong {
+  color: #cbd5e1;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   DETAILS
+========================================================= */
+
+.healing-details-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 15px;
+
+  margin-bottom: 30px;
+}
+
+.healing-detail-card {
+  padding: 20px;
+
+  border: 1px solid #1e293b;
+
+  border-radius: 12px;
+
+  background: #0d121c;
+}
+
+.healing-detail-header {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 15px;
+
+  color: #f59e0b;
+}
+
+.healing-detail-header > div {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.healing-detail-header strong {
+  color: #cbd5e1;
+
+  font-size: 12px;
+}
+
+.healing-detail-header span {
+  margin-top: 3px;
+
+  color: #64748b;
+
+  font-size: 10px;
+}
+
+.healing-list {
+  margin: 0;
+
+  padding: 0;
+
+  list-style: none;
+}
+
+.healing-list li {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 10px;
+
+  margin-bottom: 10px;
+
+  color: #94a3b8;
+
+  font-size: 11px;
+
+  line-height: 1.5;
+}
+
+.healing-list li > span {
+  min-width: 20px;
+
+  height: 20px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 5px;
+
+  background: #172033;
+
+  color: #60a5fa;
+
+  font-size: 9px;
+
+  font-weight: 700;
+}
+
+.healing-empty {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 15px;
+
+  border-radius: 8px;
+
+  background: #0a0f18;
+
+  color: #4ade80;
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   PIPELINE
+========================================================= */
+
+.healing-pipeline {
+  padding: 20px;
+
+  border: 1px solid #1e293b;
+
+  border-radius: 12px;
+
+  background: #0d121c;
+}
+
+.healing-pipeline-header {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 20px;
+
+  color: #60a5fa;
+}
+
+.healing-pipeline-header > div {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.healing-pipeline-header strong {
+  color: #cbd5e1;
+
+  font-size: 12px;
+}
+
+.healing-pipeline-header span {
+  margin-top: 3px;
+
+  color: #64748b;
+
+  font-size: 10px;
+}
+
+.healing-pipeline-flow {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+.healing-pipeline-step {
+  flex: 1;
+
+  padding: 15px;
+
+  text-align: center;
+
+  border: 1px solid #1e293b;
+
+  border-radius: 9px;
+
+  background: #0a0f18;
+}
+
+.healing-pipeline-number {
+  margin-bottom: 8px;
+
+  color: #60a5fa;
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+.healing-pipeline-step strong {
+  display: block;
+
+  color: #cbd5e1;
+
+  font-size: 11px;
+}
+
+.healing-pipeline-step span {
+  display: block;
+
+  margin-top: 5px;
+
+  color: #64748b;
+
+  font-size: 9px;
+
+  line-height: 1.4;
+}
+
+.healing-arrow {
+  color: #475569;
+
+  font-size: 20px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.healing-footer {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-top: 15px;
+
+  padding-top: 12px;
+
+  border-top: 1px solid #1e293b;
+
+  color: #64748b;
+
+  font-size: 10px;
+}
+
+.healing-footer > span:first-child {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+}
+
+.healing-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #22c55e;
+
+  box-shadow:
+    0 0 8px
+    rgba(34, 197, 94, 0.7);
+}
+
+.healing-dot.offline {
+  background: #ef4444;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+  .healing-metrics-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .healing-pipeline-flow {
+    flex-wrap: wrap;
+  }
+
+  .healing-pipeline-step {
+    min-width: 180px;
+  }
+
+}
+
+
+@media (max-width: 750px) {
+
+  .self-healing-page {
+    padding: 20px;
+  }
+
+  .self-healing-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 15px;
+  }
+
+  .healing-status-card {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .healing-status-badge {
+    align-self: flex-start;
+  }
+
+  .healing-analysis-grid,
+  .healing-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .healing-pipeline-flow {
+    flex-direction: column;
+  }
+
+  .healing-arrow {
+    transform: rotate(90deg);
+  }
+
+  .healing-pipeline-step {
+    width: 100%;
+  }
+
+}
+
+
+@media (max-width: 500px) {
+
+  .healing-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .healing-footer {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 8px;
+  }
+
+}
+
+/* =====================================================
+   SELF HEALING ACTION BUTTONS
+===================================================== */
+
+.healing-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.healing-execute-button,
+.healing-execute-large-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.healing-execute-button {
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+}
+
+.healing-execute-button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.healing-execute-button:disabled,
+.healing-execute-large-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+/* =====================================================
+   EXECUTION SUCCESS
+===================================================== */
+
+.healing-execution-success {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 13px 16px;
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  border-radius: 10px;
+  background: rgba(34, 197, 94, 0.08);
+  color: #4ade80;
+}
+
+
+/* =====================================================
+   RECOVERY ACTION CARD
+===================================================== */
+
+.healing-action-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 24px;
+  padding: 22px;
+  border: 1px solid #1e293b;
+  border-radius: 14px;
+  background: #0d1420;
+}
+
+.healing-action-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: rgba(37, 99, 235, 0.15);
+  color: #60a5fa;
+  flex-shrink: 0;
+}
+
+.healing-action-content {
+  flex: 1;
+}
+
+.healing-action-label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #64748b;
+}
+
+.healing-action-content h3 {
+  margin: 0 0 6px;
+  font-size: 17px;
+}
+
+.healing-action-content p {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.healing-execute-large-button {
+  padding: 11px 18px;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  white-space: nowrap;
+}
+
+.healing-execute-large-button:hover {
+  background: #1d4ed8;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .healing-header-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .healing-execute-button {
+    width: 100%;
+  }
+
+  .healing-action-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .healing-execute-large-button {
+    width: 100%;
+  }
+
+}

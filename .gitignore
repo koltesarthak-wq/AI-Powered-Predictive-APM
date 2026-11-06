@@ -1,0 +1,27 @@
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Frontend
+node_modules/
+dist/
+build/
+
+# Credentials
+.env
+.env.*
+!.env.example
+
+# Local database
+*.db
+*.sqlite3
+
+# Generated files
+*.exe
+*.log
+
+# Bundled installer dependencies
+tools/inno/

@@ -1,0 +1,12 @@
+﻿Predictive APM Host Agent
+
+Agent: My-Windows-Host
+Backend: http://127.0.0.1:8001
+Collection interval: 5 seconds
+
+Setup installs a Windows service that starts now and after Windows starts, even before sign-in.
+The agent sends host CPU, memory, disk and process readings to the backend shown above. Your APM website reads those readings from that backend.
+
+The backend must be reachable from this host. localhost and 127.0.0.1 work only when the backend runs on this same computer. If the backend is offline, the agent keeps retrying.
+
+Remove the agent later through Windows Settings > Apps > Installed apps.

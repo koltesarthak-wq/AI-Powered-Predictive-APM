@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI-Powered Predictive APM</title>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #0f172a;
+            color: white;
+            padding: 25px;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+
+        /* =========================
+           METRIC CARDS
+        ========================= */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+        }
+
+        .card h3 {
+            color: #94a3b8;
+            margin-bottom: 15px;
+        }
+
+        .value {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        .section {
+            background: #1e293b;
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 15px;
+        }
+
+        .section h2 {
+            margin-bottom: 20px;
+        }
+
+        /* =========================
+           GRAPHS
+        ========================= */
+
+        .charts {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .chart-box {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 15px;
+            height: 350px;
+        }
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        .status {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .normal {
+            color: #22c55e;
+        }
+
+        .warning {
+            color: #f59e0b;
+        }
+
+        .anomaly {
+            color: #ef4444;
+        }
+
+        /* =========================
+           ITEMS
+        ========================= */
+
+        .item {
+            background: #334155;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .risk {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            color: #64748b;
+            margin-top: 25px;
+        }
+
+        @media(max-width: 900px) {
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .charts {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media(max-width: 500px) {
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <h1>AI-Powered Predictive APM</h1>
+
+    <p class="subtitle">
+        Intelligent Application Performance Monitoring System
+    </p>
+
+
+    <!-- =====================================================
+         LIVE METRIC CARDS
+    ====================================================== -->
+
+    <div class="cards">
+
+        <div class="card">
+
+            <h3>CPU Usage</h3>
+
+            <div
+                class="value"
+                id="cpu">
+                --%
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Memory Usage</h3>
+
+            <div
+                class="value"
+                id="memory">
+                --%
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Latency</h3>
+
+            <div
+                class="value"
+                id="latency">
+                -- sec
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Error Rate</h3>
+
+            <div
+                class="value"
+                id="error">
+                --%
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         LIVE GRAPHS
+    ====================================================== -->
+
+    <div class="section">
+
+        <h2>Real-Time Performance Monitoring</h2>
+
+        <div class="charts">
+
+            <div class="chart-box">
+
+                <canvas id="cpuChart"></canvas>
+
+            </div>
+
+
+            <div class="chart-box">
+
+                <canvas id="memoryChart"></canvas>
+
+            </div>
+
+
+            <div class="chart-box">
+
+                <canvas id="latencyChart"></canvas>
+
+            </div>
+
+
+            <div class="chart-box">
+
+                <canvas id="errorChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         AI STATUS
+    ====================================================== -->
+
+    <div class="section">
+
+        <h2>AI Status</h2>
+
+        <div
+            id="aiStatus"
+            class="status">
+
+            Loading...
+
+        </div>
+
+        <p id="score">
+            Anomaly Score: --
+        </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         ROOT CAUSE
+    ====================================================== -->
+
+    <div class="section">
+
+        <h2>Root Cause Analysis</h2>
+
+        <div id="rootCause">
+
+            Waiting for analysis...
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         RECOMMENDATIONS
+    ====================================================== -->
+
+    <div class="section">
+
+        <h2>Recommendations</h2>
+
+        <div id="recommendations">
+
+            Waiting for recommendations...
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         PREDICTIVE RISK
+    ====================================================== -->
+
+    <div class="section">
+
+        <h2>Predictive Risk</h2>
+
+        <div
+            id="risk"
+            class="risk">
+
+            Loading...
+
+        </div>
+
+        <p id="riskScore">
+
+            Risk Score: --
+
+        </p>
+
+        <div id="predictions"></div>
+
+    </div>
+
+
+    <div class="footer">
+
+        Last updated:
+        <span id="updated">--</span>
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+/* =========================================================
+   CHART DATA
+========================================================= */
+
+const maxPoints = 20;
+
+const labels = [];
+
+const cpuData = [];
+
+const memoryData = [];
+
+const latencyData = [];
+
+const errorData = [];
+
+
+/* =========================================================
+   CREATE CHART
+========================================================= */
+
+function createChart(
+    canvasId,
+    label,
+    data,
+    yLabel
+) {
+
+    return new Chart(
+        document.getElementById(canvasId),
+        {
+
+            type: "line",
+
+            data: {
+
+                labels: labels,
+
+                datasets: [
+
+                    {
+
+                        label: label,
+
+                        data: data,
+
+                        tension: 0.3,
+
+                        fill: false
+
+                    }
+
+                ]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                animation: false,
+
+                scales: {
+
+                    x: {
+
+                        ticks: {
+                            color: "#94a3b8"
+                        }
+
+                    },
+
+                    y: {
+
+                        beginAtZero: true,
+
+                        ticks: {
+                            color: "#94a3b8"
+                        },
+
+                        title: {
+
+                            display: true,
+
+                            text: yLabel,
+
+                            color: "#94a3b8"
+
+                        }
+
+                    }
+
+                },
+
+                plugins: {
+
+                    legend: {
+
+                        labels: {
+
+                            color: "white"
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CREATE ALL CHARTS
+========================================================= */
+
+const cpuChart = createChart(
+    "cpuChart",
+    "CPU Usage %",
+    cpuData,
+    "CPU %"
+);
+
+
+const memoryChart = createChart(
+    "memoryChart",
+    "Memory Usage %",
+    memoryData,
+    "Memory %"
+);
+
+
+const latencyChart = createChart(
+    "latencyChart",
+    "Request Latency",
+    latencyData,
+    "Seconds"
+);
+
+
+const errorChart = createChart(
+    "errorChart",
+    "Error Rate %",
+    errorData,
+    "Error %"
+);
+
+
+/* =========================================================
+   UPDATE CHARTS
+========================================================= */
+
+function updateCharts(
+    cpu,
+    memory,
+    latency,
+    error
+) {
+
+    const now =
+        new Date().toLocaleTimeString();
+
+
+    labels.push(now);
+
+    cpuData.push(cpu);
+
+    memoryData.push(memory);
+
+    latencyData.push(latency);
+
+    errorData.push(error);
+
+
+    /*
+       Keep only latest 20 points
+    */
+
+    if (labels.length > maxPoints) {
+
+        labels.shift();
+
+        cpuData.shift();
+
+        memoryData.shift();
+
+        latencyData.shift();
+
+        errorData.shift();
+
+    }
+
+
+    cpuChart.update();
+
+    memoryChart.update();
+
+    latencyChart.update();
+
+    errorChart.update();
+
+}
+
+
+/* =========================================================
+   DASHBOARD UPDATE
+========================================================= */
+
+async function updateDashboard() {
+
+    try {
+
+        const response = await fetch(
+            "http://127.0.0.1:8001/ai-analysis"
+        );
+
+
+        const data =
+            await response.json();
+
+
+        /* =================================================
+           METRICS
+        ================================================= */
+
+        const cpu =
+            data.metrics.cpu_usage_percent;
+
+        const memory =
+            data.metrics.memory_usage_percent;
+
+        const latency =
+            data.metrics.latency_seconds;
+
+        const error =
+            data.metrics.error_rate_percent;
+
+
+        document.getElementById(
+            "cpu"
+        ).innerText =
+            cpu.toFixed(1) + "%";
+
+
+        document.getElementById(
+            "memory"
+        ).innerText =
+            memory.toFixed(1) + "%";
+
+
+        document.getElementById(
+            "latency"
+        ).innerText =
+            latency.toFixed(4) + " sec";
+
+
+        document.getElementById(
+            "error"
+        ).innerText =
+            error.toFixed(2) + "%";
+
+
+        /* =================================================
+           UPDATE GRAPHS
+        ================================================= */
+
+        updateCharts(
+            cpu,
+            memory,
+            latency,
+            error
+        );
+
+
+        /* =================================================
+           AI STATUS
+        ================================================= */
+
+        const statusElement =
+            document.getElementById(
+                "aiStatus"
+            );
+
+
+        statusElement.innerText =
+            data.ai_status;
+
+
+        statusElement.className =
+            "status";
+
+
+        if (
+            data.ai_status ===
+            "NORMAL"
+        ) {
+
+            statusElement.classList.add(
+                "normal"
+            );
+
+        }
+
+        else if (
+            data.ai_status ===
+            "ANOMALY"
+        ) {
+
+            statusElement.classList.add(
+                "anomaly"
+            );
+
+        }
+
+        else {
+
+            statusElement.classList.add(
+                "warning"
+            );
+
+        }
+
+
+        document.getElementById(
+            "score"
+        ).innerText =
+            "Anomaly Score: " +
+            data.anomaly_score.toFixed(4);
+
+
+        /* =================================================
+           ROOT CAUSE
+        ================================================= */
+
+        const rootCause =
+            document.getElementById(
+                "rootCause"
+            );
+
+
+        rootCause.innerHTML = "";
+
+
+        if (
+            data.root_cause &&
+            data.root_cause.length > 0
+        ) {
+
+            data.root_cause.forEach(
+                problem => {
+
+                    const div =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    div.className =
+                        "item";
+
+
+                    div.innerText =
+                        "⚠️ " + problem;
+
+
+                    rootCause.appendChild(
+                        div
+                    );
+
+                }
+            );
+
+        }
+
+        else {
+
+            rootCause.innerText =
+                "No root cause detected.";
+
+        }
+
+
+        /* =================================================
+           RECOMMENDATIONS
+        ================================================= */
+
+        const recommendations =
+            document.getElementById(
+                "recommendations"
+            );
+
+
+        recommendations.innerHTML =
+            "";
+
+
+        if (
+            data.recommendations &&
+            data.recommendations.length > 0
+        ) {
+
+            data.recommendations.forEach(
+                rec => {
+
+                    const div =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    div.className =
+                        "item";
+
+
+                    div.innerText =
+                        "💡 " + rec;
+
+
+                    recommendations.appendChild(
+                        div
+                    );
+
+                }
+            );
+
+        }
+
+        else {
+
+            recommendations.innerText =
+                "No recommendations.";
+
+        }
+
+
+        /* =================================================
+           PREDICTIVE RISK
+        ================================================= */
+
+        const risk =
+            document.getElementById(
+                "risk"
+            );
+
+
+        risk.innerText =
+            data.prediction.risk;
+
+
+        risk.className =
+            "risk";
+
+
+        if (
+            data.prediction.risk ===
+            "LOW"
+        ) {
+
+            risk.classList.add(
+                "normal"
+            );
+
+        }
+
+        else if (
+            data.prediction.risk ===
+            "MEDIUM"
+        ) {
+
+            risk.classList.add(
+                "warning"
+            );
+
+        }
+
+        else {
+
+            risk.classList.add(
+                "anomaly"
+            );
+
+        }
+
+
+        document.getElementById(
+            "riskScore"
+        ).innerText =
+            "Risk Score: " +
+            data.prediction.risk_score;
+
+
+        /* =================================================
+           PREDICTIONS
+        ================================================= */
+
+        const predictions =
+            document.getElementById(
+                "predictions"
+            );
+
+
+        predictions.innerHTML =
+            "";
+
+
+        if (
+            data.prediction.predictions &&
+            data.prediction.predictions.length > 0
+        ) {
+
+            data.prediction.predictions.forEach(
+                item => {
+
+                    const div =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    div.className =
+                        "item";
+
+
+                    div.innerText =
+                        "🔮 " + item;
+
+
+                    predictions.appendChild(
+                        div
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =================================================
+           LAST UPDATED
+        ================================================= */
+
+        document.getElementById(
+            "updated"
+        ).innerText =
+            new Date().toLocaleTimeString();
+
+
+    }
+
+    catch(error) {
+
+        console.error(
+            "Dashboard error:",
+            error
+        );
+
+
+        const status =
+            document.getElementById(
+                "aiStatus"
+            );
+
+
+        status.innerText =
+            "BACKEND OFFLINE";
+
+
+        status.className =
+            "status anomaly";
+
+    }
+
+}
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
+updateDashboard();
+
+
+/* =========================================================
+   AUTO REFRESH EVERY 5 SECONDS
+========================================================= */
+
+setInterval(
+    updateDashboard,
+    5000
+);
+
+</script>
+
+</body>
+
+</html>

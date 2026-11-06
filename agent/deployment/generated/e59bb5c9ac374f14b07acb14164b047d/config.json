@@ -1,0 +1,11 @@
+{
+    "agent_name": "AI-Predictive-APM-Agent",
+    "backend_url": "http://127.0.0.1:8001",
+    "api_key": "",
+    "collection_interval": 5,
+    "enable_cpu": true,
+    "enable_memory": true,
+    "enable_disk": true,
+    "enable_network": true,
+    "enable_process": true
+}
